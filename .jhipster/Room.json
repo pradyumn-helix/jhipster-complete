@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220520072421",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "room",
+  "fields": [
+    {
+      "fieldName": "roomno",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "floor",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Room",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resident",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "resident",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

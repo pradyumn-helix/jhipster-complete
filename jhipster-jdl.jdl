@@ -1,0 +1,28 @@
+entity Resident {
+	firstname String,
+    lastname String,
+    email String required unique,
+    phonenumber String,
+}
+
+entity Room {
+	roomno String required unique,
+    floor Integer,
+    type String,
+}
+
+entity Facility {
+	AC Boolean,
+    Parking Boolean,
+    Wifi Boolean
+}
+
+relationship OneToMany {
+  Room to Resident{room}
+}
+
+relationship OneToOne{
+	Facility{room} to Room
+}
+
+filter all

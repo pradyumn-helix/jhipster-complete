@@ -1,7 +1,5 @@
-# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-version: '3.8'
 services:
-  jhip-app:
+  jhip:
     image: jhip
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
@@ -9,20 +7,13 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - SPRING_DATASOURCE_URL=jdbc:mysql://jhip-mysql:3306/jhip?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       - SPRING_LIQUIBASE_URL=jdbc:mysql://jhip-mysql:3306/jhip?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
-    # If you want to expose these ports outside your dev PC,
-    # remove the "127.0.0.1:" prefix
+      - JHIPSTER_SLEEP=30
     ports:
-      - 127.0.0.1:8080:8080
+      - '8080:8080'
   jhip-mysql:
     image: mysql:8.0.28
-    # volumes:
-    #   - ~/volumes/jhipster/Jhip/mysql/:/var/lib/mysql/
+    platform: linux/x86_64
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=jhip
-    # If you want to expose these ports outside your dev PC,
-    # remove the "127.0.0.1:" prefix
-    ports:
-      - 127.0.0.1:3307:3307
     command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp

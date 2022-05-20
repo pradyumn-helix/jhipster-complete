@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-facility-heading" data-cy="FacilityCreateUpdateHeading">Create or edit a Facility</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_aC">A C</label>
+          <input type="checkbox" class="form-check" name="aC" id="field_aC" data-cy="aC" formControlName="aC" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_parking">Parking</label>
+          <input type="checkbox" class="form-check" name="parking" id="field_parking" data-cy="parking" formControlName="parking" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_wifi">Wifi</label>
+          <input type="checkbox" class="form-check" name="wifi" id="field_wifi" data-cy="wifi" formControlName="wifi" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_room">Room</label>
+          <select class="form-control" id="field_room" data-cy="room" name="room" formControlName="room">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="roomOption.id === editForm.get('room')!.value?.id ? editForm.get('room')!.value : roomOption"
+              *ngFor="let roomOption of roomsCollection; trackBy: trackRoomById"
+            >
+              {{ roomOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20220520072420",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "resident",
+  "fields": [
+    {
+      "fieldName": "firstname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "phonenumber",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Resident",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "room",
+      "otherEntityRelationshipName": "resident",
+      "relationshipName": "room",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
